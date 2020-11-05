@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\UserImageService;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
+
+    /**
+     * @var UserImageService
+     */
+    private $service;
+
+    public function __construct(UserImageService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Форма
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -30,8 +42,12 @@ class ImageController extends Controller
             "phone"         => 'required',
             "email"         => 'required',
             "instagram"     => 'required',
-            "photos.*"      => 'required|image',
+            "files"         => 'required',
+            "files.*"       => 'required|image',
         ]);
+
+
+        $this->service->storeRequest($request);
 
 
     }

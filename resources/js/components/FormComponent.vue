@@ -38,12 +38,12 @@
             </b-form-group>
 
             <b-form-group id="input-group-8" label="Фотографии:" label-for="input-8">
-                <b-form-file multiple accept="image/*" v-model="form.photos" :state="getError('photos')">
+                <b-form-file multiple accept="image/*" v-model="form.files" :state="getError('files')">
                     <template slot="file-name" slot-scope="{ names }">
                         <b-badge variant="dark" class="mr-2 p-1" v-for="name in names" :key="name">{{ name }}</b-badge>
                     </template>
                 </b-form-file>
-                <b-form-invalid-feedback :state="getError('photos')">{{ form.errors.has('photos') }}</b-form-invalid-feedback>
+                <b-form-invalid-feedback :state="getError('files')">{{ form.errors.has('files') }}</b-form-invalid-feedback>
             </b-form-group>
 
             <b-button type="submit" variant="primary">Отправить</b-button>
@@ -66,7 +66,7 @@
                     phone: '',
                     email: '',
                     instagram: '',
-                    photos: [],
+                    files: [],
                 }),
                 qualifications: ['Серебро', 'Золото']
             }
