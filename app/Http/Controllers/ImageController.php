@@ -30,7 +30,7 @@ class ImageController extends Controller
     /**
      * Форма
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function imageFormLoad(Request $request)
     {
@@ -46,9 +46,8 @@ class ImageController extends Controller
             "files.*"       => 'required|image',
         ]);
 
-
         $this->service->storeRequest($request);
 
-
+        return view('image-form-success');
     }
 }

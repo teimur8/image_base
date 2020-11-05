@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes(['register' => false]);
+
+
 Route::get('/', 'ImageController@imageForm')->name('imageForm');
 Route::post('/', 'ImageController@imageFormLoad')->name('imageForm');
 
-Auth::routes(['register' => false]);
+Route::get('/admin/images', 'AdminController@images')->name('images');
+
+
