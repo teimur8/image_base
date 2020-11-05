@@ -22,6 +22,17 @@ class ImageController extends Controller
      */
     public function imageFormLoad(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            "npaId"         => 'required',
+            "fio1"          => 'required',
+            "fio2"          => 'required',
+            "qualification" => 'required',
+            "phone"         => 'required',
+            "email"         => 'required',
+            "instagram"     => 'required',
+            "photos.*"      => 'required|image',
+        ]);
+
+
     }
 }
