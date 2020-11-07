@@ -47,7 +47,6 @@
             </b-form-group>
 
             <b-button type="submit" variant="primary">Отправить</b-button>
-            <b-button type="reset" variant="danger">Сбросить</b-button>
         </form>
     </div>
 </template>
@@ -82,7 +81,6 @@
                   .catch(error => {
                       debugger;
                   });
-
 
             },
             getError(type){
