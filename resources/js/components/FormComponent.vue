@@ -76,10 +76,16 @@
                 this.form
                   .submitFormData('/')
                   .then(response => {
-                      debugger;
+                      if(response.success && response.redirect){
+                          window.location.href = response.redirect;
+                      }else{
+                          console.log(response);
+                          alert('Что то пошло не так')
+                      }
                   })
                   .catch(error => {
-                      debugger;
+                      console.log(error);
+                      alert('Что то пошло не так');
                   });
 
             },
