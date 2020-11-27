@@ -75,9 +75,9 @@
                                         </td>
 
                                         <td>
-                                            @foreach($item->photos as $photo)
-                                                <a href="{{$photo}}" target="_blank" class="mb-3 d-block">
-                                                    <img style="max-width: 100px;" src="{{$photo}}" alt="">
+                                            @foreach($item->getPhotos() as $photo)
+                                                <a href="{{$photo['path']}}" target="_blank" class="mb-3 d-block">
+                                                    <img style="max-width: 100px;" src="{{$photo['path']}}" alt="">
                                                 </a>
                                             @endforeach
                                         </td>

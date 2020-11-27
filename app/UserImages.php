@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Services\YandexDiskProvider;
 use App\Traits\AsJsonTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -32,10 +31,10 @@ class UserImages extends Model
     {
         $links = [];
         foreach ($this->photos as $photo) {
-            if ($photo['type'] == 'yc') {
-                $photoLink = Storage::disk('yandex')->url($photo['path']);
+            if ($photo['type']??'' == 'yc') {
+                $photoLink = Storage::disk('yandex')->url($photo['path']??'');
                 $links[] = [
-                    'name' => $photo['filename'],
+                    'name' => $photo['filename']??'',
                     'path' => $photoLink,
                 ];
             }
