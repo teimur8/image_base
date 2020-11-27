@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\Npa;
+use App\Rules\Phone;
 use App\Services\UserImageService;
 use Illuminate\Http\Request;
 
@@ -38,16 +40,18 @@ class ImageController extends Controller
     public function imageFormLoad(Request $request)
     {
         $request->validate([
-            "npaId"         => 'required',
+            "npaId"         => ['required',new Npa],
             "fio1"          => 'required',
             "fio2"          => 'required',
             "qualification" => 'required',
-            "phone"         => 'required',
-            "email"         => 'required',
+            "phone"         => ['required', new Phone],
+            "email"         => ['required', 'email'],
             "instagram"     => 'required',
             "files"         => 'required',
-            "files.*"       => 'required|image',
+            "files.*"       => 'required|image|dimensions:min_width=1000,min_height=1000|min:1024',
         ]);
+
+//        $this->service->storeRequest($request);
 
         return [
             'success'  => true,

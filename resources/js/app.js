@@ -13,6 +13,9 @@ import { BootstrapVue } from 'bootstrap-vue'
 // Install BootstrapVue
 window.Vue.use(BootstrapVue);
 
+import VueTheMask from 'vue-the-mask'
+window.Vue.use(VueTheMask);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

@@ -23,6 +23,12 @@ class Errors{
         }
     }
 
+    hasArray(field){
+        if(this.errors[field]){
+            return this.errors[field];
+        }
+    }
+
     any(){
         return Object.keys(this.errors).length > 0;
     }
