@@ -19,6 +19,8 @@ Auth::routes(['register' => false]);
 Route::get('/', 'ImageController@imageForm')->name('imageForm');
 Route::post('/', 'ImageController@imageFormLoad')->name('imageForm');
 
-Route::get('/admin/images', 'AdminController@images')->name('images');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/admin/images', 'AdminController@images')->name('images');
+});
 
 
