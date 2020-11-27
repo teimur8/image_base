@@ -23,7 +23,7 @@ class CreateUserImagesTable extends Migration
             $table->string('phone', 20);
             $table->string('email', 20);
             $table->string('instagram', 50);
-            $table->string('photos', 500);
+            $table->text('photos');
 
             $table->timestamps();
         });
