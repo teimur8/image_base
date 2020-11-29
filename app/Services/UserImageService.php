@@ -82,7 +82,7 @@ class UserImageService
         $text .= "NPA: " . $item->npaId . PHP_EOL;
         $text .= "Fio contract holder: " . $item->fio1 . PHP_EOL;
         $text .= "Fio designated person: " . $item->fio2 . PHP_EOL;
-        $text .= "Qualification: " . $item->qualification . PHP_EOL;
+        $text .= "Qualification: " . Str::slug($item->qualification) . PHP_EOL;
         $text .= "Phone: " . $item->phone . PHP_EOL;
         $text .= "Email: " . $item->email . PHP_EOL;
         $text .= "Instagram : " . $item->instagram . PHP_EOL;
