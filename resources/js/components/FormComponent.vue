@@ -97,7 +97,7 @@
           </b-form-invalid-feedback>
 
           <template v-for="(e, index) in 10">
-            <b-form-invalid-feedback :state="getError('files.' + index)"
+            <b-form-invalid-feedback :key="index" :state="getError('files.' + index)"
                                      v-for="err in form.errors.hasArray('files.' + index)">
               {{ getFileName(err, index) }}
             </b-form-invalid-feedback>
