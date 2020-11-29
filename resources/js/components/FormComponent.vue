@@ -116,7 +116,7 @@
         </div>
 
 
-        <b-button type="submit" variant="primary" disabled="isValid">Отправить</b-button>
+        <b-button type="submit" variant="primary" :disabled="!isValid">Отправить</b-button>
       </form>
 
     </b-overlay>
@@ -146,14 +146,14 @@
     computed: {
       isValid() {
         let f = this.form;
-        return f.npaId.length
+        return !!(f.npaId.length
           && f.fio1.length
           && f.fio2.length
           && f.qualification.length
           && f.phone.length
           && f.email.length
           && f.instagram.length
-          && f.files.length;
+          && f.files.length);
       }
     },
     methods: {
