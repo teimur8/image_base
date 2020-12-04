@@ -138,7 +138,6 @@ export default class Form{
                 resolve(response.data);
             })
             .catch(error => {
-                debugger;
                 this.onFail(error);
                 this.message = null;
                 reject(error);

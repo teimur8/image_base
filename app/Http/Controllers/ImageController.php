@@ -55,7 +55,7 @@ class ImageController extends Controller
             "email"         => ['required', 'email:rfc,dns'],
             "instagram"     => 'required',
             "files"         => 'required',
-            "files.*"       => 'required|image|dimensions:min_width=1000,min_height=1000|min:1024',
+            "files.*"       => 'required|image|dimensions:min_width=1000,min_height=1000|min:512',
         ]);
 
         $item = $this->service->storeRequest($request);

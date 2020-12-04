@@ -53,13 +53,7 @@
             <label for="input-5">Номер телефона <span class="red">*</span></label>
           </slot>
 
-          <b-form-input id="input-5"
-                        v-mask="getPhoneMask()"
-                        v-model="form.phone"
-                        type="text"
-                        placeholder="Номер телефона"
-                        :state="getError('phone')"
-          ></b-form-input>
+          <vue-tel-input v-model="form.phone"></vue-tel-input>
 
           <b-form-invalid-feedback :state="getError('phone')">{{ form.errors.has('phone') }}</b-form-invalid-feedback>
         </b-form-group>
@@ -83,18 +77,14 @@
           </b-form-invalid-feedback>
         </b-form-group>
 
-        <b-form-group id="input-group-8"
-                      description="Фотография должна быть не менее 1 меггабайта и размер не менее 1000 пикселей по высоте и ширине">
+        <b-form-group id="input-group-8" description="Фотография должна быть не менее 512 килобайт и размер не менее 1000 пикселей по высоте и ширине">
           <slot name="label">
             <label for="input-8">Фотографии <span class="red">*</span></label>
           </slot>
-          <b-form-file multiple accept="image/*" v-model="form.files" :state="getError('files')">
-            <template slot="file-name" slot-scope="{ names }">
-              <b-badge variant="dark" class="mr-2 p-1" v-for="name in names" :key="name">{{ name }}</b-badge>
-            </template>
-          </b-form-file>
-          <b-form-invalid-feedback :state="getError('files')">{{ form.errors.has('files') }}
-          </b-form-invalid-feedback>
+
+          <image-loader @load-image="loadImage($event)"/>
+
+          <b-form-invalid-feedback :state="getError('files')">{{ form.errors.has('files') }}</b-form-invalid-feedback>
 
           <template v-for="(e, index) in 10">
             <b-form-invalid-feedback :key="index" :state="getError('files.' + index)"
@@ -125,8 +115,12 @@
 
 <script>
   import Form from './Form';
+  import ImageLoader from './ImageLoader';
 
   export default {
+    components:{
+      ImageLoader
+    },
     data() {
       return {
         form: new Form({
@@ -179,15 +173,6 @@
           });
 
       },
-      getPhoneMask() {
-        if (this.form.phone.length === 0) {
-          return '+';
-        }
-        if (/^\+7/.test(this.form.phone)) {
-          return '+7 ### #######';
-        }
-        return '+996 ### ## ## ##';
-      },
       getNpaMask() {
         return this.form.npaId.length > 7 ? '### ### ### #' : '### ### #';
       },
@@ -201,7 +186,10 @@
           return error.replace(`files.${index}`, f_name);
         }
         return error;
-      }
+      },
+      loadImage(files) {
+        this.form.files = [...files];
+      },
     }
   }
 </script>

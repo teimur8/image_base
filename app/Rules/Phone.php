@@ -32,7 +32,7 @@ class Phone implements Rule
      */
     public function message()
     {
-        return 'Вы ввели не корректный номер телефона';
+        return 'Вы ввели не корректный номер телефона, номер должен начинаться с +7 или +9';
     }
 
     /**
@@ -43,7 +43,7 @@ class Phone implements Rule
     private function checkPhone($value)
     {
         $value = preg_replace('#[^0-9\+]#', '', $value);
-        return (bool)preg_match('#[\+7|+996]\d+$#', $value);
+        return (bool)preg_match('#^[\+7|+9]\d+$#', $value);
     }
 
 }
